@@ -9,7 +9,7 @@ const Header = () =>
         <div className="col-12">
           <div className="header-content">
             <span className="header-logo">
-              Gatsby React Boilerplate
+              EDTECH ICO
             </span>
             <nav className="header-nav">
               <ul className="header-nav-list">
@@ -18,6 +18,9 @@ const Header = () =>
                 </li>
                 <li className="header-nav-list-item">
                   <a href="#howto">How To</a>
+                </li>
+                <li className="header-nav-list-item">
+                  <a href="#team">Team</a>
                 </li>
               </ul>
             </nav>

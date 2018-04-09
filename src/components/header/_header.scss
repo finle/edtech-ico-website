@@ -6,6 +6,11 @@
         align-items: center;
         justify-content: space-between;
     }
+    &-logo {
+        font-weight: bold;
+        font-size: 24px;
+        color: green;
+    }
     &-nav-list {
         margin: 0;
         padding: 0;

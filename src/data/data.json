@@ -1,25 +1,22 @@
 {
     "features": [
         {
-            "title": "Basic configuration and folder structure"
+            "title": "Decentralize your participation tokens on the blockchain!"
         },
         {
-            "title": "Uses postcss and sass with autoprefixer"
+            "title": "Middlemen (TAs and David Joyner) and centralization in CS6460 risk the validity and authenticity of participation tokens"
         },
         {
-            "title": "Uses Bootstrap 4"
+            "title": "Over 100 participation token breach incidents the past year"
         },
         {
-            "title": "Leaves the styling to you"
+            "title": "We guarantee you an A+ in the class if you participate in our crowdsale"
         },
         {
-            "title": "Uses data from local json files"
+            "title": "Revolutionary and ground breaking technology, great team, disruptors in the space, awesome partnerships with top tier universities, working product, blah blah buzzwords"
         },
         {
-            "title": "Contains Node.js server code for easy, secure, and fast hosting"
-        },
-        {
-            "title": "SVG sprites: Add your icons in `components/icon` as .icon files and use them."
+            "title": "You have to participate NOW! 500% bonus in tokens the next minute! Offer will run out soon!"
         }
     ],
     "howTo": [
@@ -31,6 +28,29 @@
         },
         {
             "title": "Start coding!"
+        }
+    ],
+    "team": [
+        {
+            "name": "Kevin Le - Self-proclaimed prodigy",
+            "picture": "https://www.interculturalsolutions.net/wp-content/uploads/Why-Critical-Thinking-Is-So-Important.jpg",
+            "description": "With more years of industry experience than his own age, self-proclaimed prodigy Kevin already had a vision for the EDTECH token and its role in the educational technology ecosystem before his own conception",
+            "linkedin": "https://www.linkedin.com/in/kevinhle",
+            "github": "https://github.com/finle"
+        },
+        {
+            "name": "Jon Brasher - Developer",
+            "picture": "https://pbs.twimg.com/profile_images/824716853989744640/8Fcd0bji_400x400.jpg",
+            "description": "Awesome developer with over 20 years of experience in the blockchain space technology. Yes, you read that right, 20 years do you want me to spell that out for you?",
+            "linkedin": "https://www.linkedin.com/in/jon-brasher",
+            "github": ""
+        },
+        {
+            "name": "Vasanth Mani - Developer",
+            "picture": "https://media.licdn.com/dms/image/C4E03AQGDGJi32q8V5Q/profile-displayphoto-shrink_800_800/0?e=1528416000&v=beta&t=mXdRBwHTqekJ-fWQiuDUKFAWwtePT91xaADpXIeSbRE",
+            "description": "Rockstar developer who is passionate about blockchain technology and definitely not in the cryptocurrency space to take investor funds and run away",
+            "linkedin": "https://www.linkedin.com/in/vasanthmani",
+            "github": ""
         }
     ]
 }

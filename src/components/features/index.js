@@ -7,7 +7,7 @@ const NewsListing = props =>
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <h4 className="features-title">Features</h4>
+          <h4 className="features-title">Why EDTECH?</h4>
         </div>
       </div>
       <div className="row">
