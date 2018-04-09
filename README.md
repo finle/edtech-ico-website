@@ -1,4 +1,4 @@
-# Gatsby React Boilerplate
+# CS6460: EDTECH ICO
 
 ### Requirements
 
