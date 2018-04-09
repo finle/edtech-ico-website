@@ -1,26 +1,28 @@
 import React from 'react';
 
-import './_how-to.scss';
+import './_distribution.scss';
+import PieChart from '../PieChart';
 
 const NewsListing = props =>
-  (<section className="howto" id="howto">
+  (<section className="distribution" id="distribution">
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <h4 className="howto-title">How to</h4>
+          <h4 className="distribution-title">Token Distribution Metrics</h4>
         </div>
       </div>
       <div className="row">
         <div className="col-12">
-          <ol className="howto-list">
+          <ul className="distribution-list">
             {props.data.map((item, i) =>
-              (<li className="howto-list-item" key={i}>
+              (<li className="distribution-item" key={i}>
                 {item.title}
               </li>),
             )}
-          </ol>
+          </ul>
         </div>
       </div>
+      <PieChart />
     </div>
   </section>);
 

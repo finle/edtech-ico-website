@@ -12,7 +12,7 @@ const TeamListing = props =>
     <div className="container">
       <div className="row">
         <div className="col-12">
-          <h4 className="team-title">Team</h4>
+          <h4 className="team-title">The Dream Team</h4>
         </div>
       </div>
       <div className="row">
