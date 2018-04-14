@@ -27,6 +27,9 @@ const Header = () =>
                   <a className="btn btn-secondary" href="#crowdsale">Crowdsale</a>
                 </li>
                 <li className="header-nav-list-item">
+                  <a className="btn btn-info" href="#roadmap">Roadmap</a>
+                </li>
+                <li className="header-nav-list-item">
                   <a className="btn btn-dark" href="https://drive.google.com/uc?export=download&id=1gmvMa0AAh4WtQDgPwfViEsWq-6ht4hk_">Whitepaper</a>
                 </li>
               </ul>

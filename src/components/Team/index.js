@@ -2,10 +2,10 @@ import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './_team.scss';
-import Icon from '../icon';
-import Github from '../icon/github.icon';
-import LinkedIn from '../icon/linkedin.icon';
-import Twitter from '../icon/twitter.icon'
+import Icon from '../Icon';
+import Github from '../Icon/github.icon';
+import LinkedIn from '../Icon/linkedin.icon';
+import Twitter from '../Icon/twitter.icon';
 
 const TeamListing = props =>
   (<section className="team" id="team">

@@ -1,6 +1,6 @@
 import React from 'react';
-import Icon from '../icon';
-import Github from '../icon/github.icon';
+import Icon from '../Icon';
+import Github from '../Icon/github.icon';
 import './_footer.scss';
 
 const Footer = () =>
