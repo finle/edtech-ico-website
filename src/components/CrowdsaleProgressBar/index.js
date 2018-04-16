@@ -1,6 +1,6 @@
 import React from 'react';
-import { Circle } from 'rc-progress';
-import { ProgressBar } from 'react-bootstrap';
+import { Progress } from 'reactstrap';
+import './_progressbar.scss';
 
 
 function httpGet(url) {
@@ -20,8 +20,8 @@ const CrowdsaleProgressBar = (props) => {
     if (item.name === 'dummy') {
       address = item.address
       url = `https://api.etherscan.io/api?module=account&action=balance&address=${address}&tag=latest&apikey=YourApiKeyToken`;
-      balance = JSON.parse(httpGet(url)).result / (10 ** 18);
-      percentage = balance / goal;
+      balance = (JSON.parse(httpGet(url)).result / (10 ** 18)).toFixed(2);
+      percentage = ((balance / goal) * 100).toFixed(2);
     }
   });
   console.log(percentage);
@@ -31,9 +31,22 @@ const CrowdsaleProgressBar = (props) => {
     <section className="progressbar" id="progressbar">
       <div className="container">
         <div className="row">
-          <progress value="22" max="100"></progress>
-          <h4>hello there!</h4>
-          <Circle percent="20" strokeWidth="40" strokeColor="#D3D3D3" />
+          <div className="col-md-12">
+            <h4 className="progressbar-title">Crowdsale Progress</h4>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <div className="text-center">{balance}/{goal} ETH</div>
+            <div className="blank_row">
+            </div>
+            <div className="text-center">{percentage}% completed!</div>
+            <div className="blank_row">
+            </div>
+            <div>
+              <Progress className="progressbar-size" animated color="info" value={percentage} />
+            </div>
+          </div>
         </div>
       </div>
     </section>

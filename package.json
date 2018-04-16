@@ -28,6 +28,7 @@
     "react-google-charts": "^1.5.7",
     "react-progressbar.js": "^0.2.0",
     "react-slick": "^0.23.1",
+    "reactstrap": "^5.0.0",
     "serve-static": "^1.13.1",
     "slick-carousel": "^1.8.1"
   },

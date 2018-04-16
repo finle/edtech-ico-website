@@ -1,0 +1,20 @@
+.progressbar {
+    background-color: #fff;
+    padding: 90px;
+    padding-bottom: 120px;
+    &-title{
+        font-weight: bold;
+        text-align: center;
+        font-size: 30px;
+        padding-bottom: 60px;
+    }
+    &-size {
+        height: 30px;
+        font-size: 15px;
+    }
+}
+
+.blank_row {
+    background-color: #fff;
+    height: 20px;
+}

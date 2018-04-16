@@ -17,8 +17,10 @@ const IndexPage = props =>
     <Team data={props.data.allDataJson.edges[0].node.team} />
     <Distribution data={props.data.allDataJson.edges[0].node.howTo} />
     <CrowdSale data={props.data.allDataJson.edges[0].node.features} />
+    <ProgressBar data={props.data.allDataJson.edges[0].node.contracts} />
     <Partnerships data={props.data.allDataJson.edges[0].node.partnerships} />
     <Roadmap />
+
   </main>);
 
 //<ProgressBar data={props.data.allDataJson.edges[0].node.contracts} />
