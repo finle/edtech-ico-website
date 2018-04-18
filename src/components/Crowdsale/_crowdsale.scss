@@ -13,25 +13,6 @@
     font-family: 'open sans';
     margin: 0;
 }*/
-.crowdsale-ul{
-    list-style-type: none;
-    padding-left: 0;
-    display: flex;
-}
-.crowdsale-li{
-    padding: 15px;
-    border: 2px solid rgb(30,134,255);
-    margin-right: 5px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.crowdsale-li:hover{
-    background-color: rgb(30,134,255);
-    color: white;
-}
-.crowdsale-li:active{
-    opacity: 0.7;
-}
 *{
     color: #444444;
 }
@@ -42,15 +23,40 @@
     display: flex;
     align-items: center;
 }
-.number-selected{
-    background-color: rgb(30,134,255);
-    color: white;
+
+.input-icon {
+  position: relative;
+  padding-left: 10px;
 }
-.bet-input{
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid lightgrey;
-    //border-bottom: 2px solid red;
-    font-size: 10pt;
-    margin: 0 10px;
+
+.input-icon > i {
+  padding: 6px 10px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 50%;
+  pointer-events: none;
+  text-align: center;
+	font-style: normal;
+}
+
+.input-icon > input {
+  padding-left: 55px;
+	padding-right: 0;
+}
+
+.input-icon-right > i {
+  right: 0;
+}
+
+.input-icon-right > input {
+  padding-left: 0;
+  padding-right: 25px;
+  text-align: right;
 }

@@ -6,6 +6,9 @@ class Crowdsale extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      minimumBet: 1,
+      totalSupply : 0,
+      address: '',
       saleRate: 0,
       symbol: '',
       balance: 0,
@@ -39,10 +42,17 @@ class Crowdsale extends React.Component {
     this.state.EdTechTokenInstance.symbol((err, result) => {
       if (result != null) {
         this.setState({
-          symbol: result,
+          symbol: result
         });
       }
     });
+    // this.state.EdTechTokenInstance.totalSupply((err, result) => {
+    //   if (result != null) {
+    //     this.setState({
+    //       totalSupply: result
+    //     });
+    //   }
+    // });
     web3.eth.getAccounts((error, accounts) => {
       if (error) return console.error(error);
       if (!accounts || accounts.length <= 0) return console.error("No accounts found. Please login to Metamask.");
@@ -77,17 +87,11 @@ class Crowdsale extends React.Component {
 
   // Listen for events and executes the buyTokens method
   setupListeners() {
-    const liNodes = this.refs.numbers.querySelectorAll('li');
-    liNodes.forEach((number) => {
-      number.addEventListener('click', (event) => {
-        event.target.className = 'number-selected';
-        this.buyTokens(parseInt(event.target.innerHTML), (done) => {
-          // Remove the other number selected
-          for (let i = 0; i < liNodes.length; i++) {
-            liNodes[i].className = '';
-          }
-        });
-      });
+    const button = this.refs.invest;
+
+    button.addEventListener('click', (event) => {
+      event.target.className = 'number-selected';
+      this.buyTokens(parseInt(this.refs['ether-bet'].valueL), (done) => {});
     });
   }
 
@@ -119,39 +123,36 @@ class Crowdsale extends React.Component {
         <div className="container">
           <h1 className="crowdsale-title">EDTEC Crowdsale</h1>
           <div className="block">
-            <b>Symbol:</b> &nbsp;
+            <b>Token Symbol:</b> &nbsp;
             <span>{this.state.symbol}</span>
           </div>
           <div className="block">
-            <b>ETH raised:</b> &nbsp;
+            <b>Token Address:</b> &nbsp;
+            <span>{this.state.EdTechTokenInstance.address}</span>
+          </div>
+          <div className="block">
+            <b>You own:</b> &nbsp;
+            <span>{this.state.balance} EDTEC Tokens</span>
+          </div>
+          <hr />
+          <div className="block">
+            <b>Total ETH raised:</b> &nbsp;
             <span>{this.state.raised}</span>
           </div>
           <div className="block">
             <b>Rate:</b> &nbsp;
             <span>1 ETH = {this.state.saleRate} EDTEC</span>
           </div>
-          <div className="block">
-            <b>Purchased:</b> &nbsp;
-            <span>{this.state.balance} EDTEC Tokens</span>
-          </div>
           <hr />
           <h2>Purchase EDTEC Tokens</h2>
-          <label>
-            <b>How much Ether do you want to spend? <input className="bet-input" ref="ether-bet" type="number" placeholder="1" /></b> ETH
-            <br />
-          </label>
-          <ul className="crowdsale-ul" ref="numbers">
-            <li className="crowdsale-li">1</li>
-            <li className="crowdsale-li">2</li>
-            <li className="crowdsale-li">3</li>
-            <li className="crowdsale-li">4</li>
-            <li className="crowdsale-li">5</li>
-            <li className="crowdsale-li">6</li>
-            <li className="crowdsale-li">7</li>
-            <li className="crowdsale-li">8</li>
-            <li className="crowdsale-li">9</li>
-            <li className="crowdsale-li">10</li>
-          </ul>
+          <div class="form-inline">
+            How much Ether do you want to invest?
+            <div class="input-icon">
+              <i>ETH</i>
+              <input className="bet-input" ref="ether-bet" type="number" placeholder="1"/>
+            </div>
+            <button ref="invest" className="crowdsale-invest">Invest</button>
+          </div>
         </div>
       </section>
     );
