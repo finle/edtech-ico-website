@@ -45,6 +45,7 @@ class Crowdsale extends React.Component {
     });
     web3.eth.getAccounts((error, accounts) => {
       if (error) return console.error(error);
+      if (!accounts || accounts.length <= 0) return console.error("No accounts found. Please login to Metamask.");
 
       this.state.EdTechTokenInstance.balanceOf(accounts[0], (err, result) => {
         if (result != null) {
@@ -99,10 +100,11 @@ class Crowdsale extends React.Component {
     } else {
       web3.eth.getAccounts((error, accounts) => {
         if (error) return console.error(error);
+        if (!accounts || accounts.length <= 0) return console.error("No accounts found. Please login to Metamask.");
 
         this.state.EdTechCrowdsaleInstance.buyTokens(accounts[0], {
           gas: 300000,
-          from: web3.eth.accounts[0],
+          from: accounts[0],
           value: web3.toWei(bet, 'ether'),
         }, (err, result) => {
           cb();
