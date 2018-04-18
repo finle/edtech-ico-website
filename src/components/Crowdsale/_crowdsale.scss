@@ -1,11 +1,11 @@
 .crowdsale {
     background-color: #fff;
-    padding: 90px 0;
+    padding-top: 90px;
     &-title {
         font-weight: bold;
         text-align: center;
         font-size: 30px;
-        padding-bottom: 30px;
+        padding-bottom: 60px;
     }
 }
 
@@ -19,7 +19,7 @@
     display: flex;
 }
 .crowdsale-li{
-    padding: 22px;
+    padding: 15px;
     border: 2px solid rgb(30,134,255);
     margin-right: 5px;
     border-radius: 5px;

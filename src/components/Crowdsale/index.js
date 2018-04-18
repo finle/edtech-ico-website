@@ -44,7 +44,7 @@ class Crowdsale extends React.Component {
       }
     });
     web3.eth.getAccounts((error, accounts) => {
-      if (error) return console.error(error)
+      if (error) return console.error(error);
 
       this.state.EdTechTokenInstance.balanceOf(accounts[0], (err, result) => {
         if (result != null) {
@@ -53,7 +53,7 @@ class Crowdsale extends React.Component {
           });
         }
       });
-    })
+    });
 
     this.state.EdTechCrowdsaleInstance.rate((err, result) => {
       if (result != null) {
@@ -98,7 +98,7 @@ class Crowdsale extends React.Component {
       cb();
     } else {
       web3.eth.getAccounts((error, accounts) => {
-        if (error) return console.error(error)
+        if (error) return console.error(error);
 
         this.state.EdTechCrowdsaleInstance.buyTokens(accounts[0], {
           gas: 300000,
@@ -107,49 +107,51 @@ class Crowdsale extends React.Component {
         }, (err, result) => {
           cb();
         });
-      })
+      });
     }
   }
 
   render() {
     return (
-      <div className="main-container">
-        <h1 className="crowdsale-title">EDTEC Crowdsale</h1>
-        <div className="block">
-          <b>Symbol:</b> &nbsp;
-          <span>{this.state.symbol}</span>
+      <section className="crowdsale" id="crowdsale">
+        <div className="container">
+          <h1 className="crowdsale-title">EDTEC Crowdsale</h1>
+          <div className="block">
+            <b>Symbol:</b> &nbsp;
+            <span>{this.state.symbol}</span>
+          </div>
+          <div className="block">
+            <b>ETH raised:</b> &nbsp;
+            <span>{this.state.raised}</span>
+          </div>
+          <div className="block">
+            <b>Rate:</b> &nbsp;
+            <span>1 ETH = {this.state.saleRate} EDTEC</span>
+          </div>
+          <div className="block">
+            <b>Purchased:</b> &nbsp;
+            <span>{this.state.balance} EDTEC Tokens</span>
+          </div>
+          <hr />
+          <h2>Purchase EDTEC Tokens</h2>
+          <label>
+            <b>How much Ether do you want to spend? <input className="bet-input" ref="ether-bet" type="number" placeholder="1" /></b> ETH
+            <br />
+          </label>
+          <ul className="crowdsale-ul" ref="numbers">
+            <li className="crowdsale-li">1</li>
+            <li className="crowdsale-li">2</li>
+            <li className="crowdsale-li">3</li>
+            <li className="crowdsale-li">4</li>
+            <li className="crowdsale-li">5</li>
+            <li className="crowdsale-li">6</li>
+            <li className="crowdsale-li">7</li>
+            <li className="crowdsale-li">8</li>
+            <li className="crowdsale-li">9</li>
+            <li className="crowdsale-li">10</li>
+          </ul>
         </div>
-        <div className="block">
-          <b>ETH raised:</b> &nbsp;
-          <span>{this.state.raised}</span>
-        </div>
-        <div className="block">
-          <b>Rate:</b> &nbsp;
-          <span>1 ETH = {this.state.saleRate} EDTEC</span>
-        </div>
-        <div className="block">
-          <b>Purchased:</b> &nbsp;
-          <span>{this.state.balance} EDTEC Tokens</span>
-        </div>
-        <hr />
-        <h2>Purchase EDTEC Tokens</h2>
-        <label>
-          <b>How much Ether do you want to spend? <input className="bet-input" ref="ether-bet" type="number" placeholder="1" /></b> ETH
-          <br />
-        </label>
-        <ul className="crowdsale-ul" ref="numbers">
-          <li className="crowdsale-li">1</li>
-          <li className="crowdsale-li">2</li>
-          <li className="crowdsale-li">3</li>
-          <li className="crowdsale-li">4</li>
-          <li className="crowdsale-li">5</li>
-          <li className="crowdsale-li">6</li>
-          <li className="crowdsale-li">7</li>
-          <li className="crowdsale-li">8</li>
-          <li className="crowdsale-li">9</li>
-          <li className="crowdsale-li">10</li>
-        </ul>
-      </div>
+      </section>
     );
   }
 }
