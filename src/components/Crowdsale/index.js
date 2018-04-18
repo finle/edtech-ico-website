@@ -114,7 +114,7 @@ class Crowdsale extends React.Component {
   render() {
     return (
       <div className="main-container">
-        <h1>EDTEC Crowdsale</h1>
+        <h1 className="crowdsale-title">EDTEC Crowdsale</h1>
         <div className="block">
           <b>Symbol:</b> &nbsp;
           <span>{this.state.symbol}</span>
@@ -138,16 +138,16 @@ class Crowdsale extends React.Component {
           <br />
         </label>
         <ul ref="numbers">
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-          <li>5</li>
-          <li>6</li>
-          <li>7</li>
-          <li>8</li>
-          <li>9</li>
-          <li>10</li>
+          <li className="crowdsale-li">1</li>
+          <li className="crowdsale-li">2</li>
+          <li className="crowdsale-li">3</li>
+          <li className="crowdsale-li">4</li>
+          <li className="crowdsale-li">5</li>
+          <li className="crowdsale-li">6</li>
+          <li className="crowdsale-li">7</li>
+          <li className="crowdsale-li">8</li>
+          <li className="crowdsale-li">9</li>
+          <li className="crowdsale-li">10</li>
         </ul>
       </div>
     );
