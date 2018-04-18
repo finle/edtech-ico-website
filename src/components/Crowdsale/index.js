@@ -137,7 +137,7 @@ class Crowdsale extends React.Component {
           <b>How much Ether do you want to spend? <input className="bet-input" ref="ether-bet" type="number" placeholder="1" /></b> ETH
           <br />
         </label>
-        <ul ref="numbers">
+        <ul className="crowdsale-ul" ref="numbers">
           <li className="crowdsale-li">1</li>
           <li className="crowdsale-li">2</li>
           <li className="crowdsale-li">3</li>
