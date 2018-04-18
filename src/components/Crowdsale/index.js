@@ -43,13 +43,17 @@ class Crowdsale extends React.Component {
         });
       }
     });
-    this.state.EdTechTokenInstance.balanceOf(web3.eth.accounts[0], (err, result) => {
-      if (result != null) {
-        this.setState({
-          balance: parseFloat(result) / 1e18,
-        });
-      }
-    });
+    web3.eth.getAccounts((error, accounts) => {
+      if (error) return console.error(error)
+
+      this.state.EdTechTokenInstance.balanceOf(accounts[0], (err, result) => {
+        if (result != null) {
+          this.setState({
+            balance: parseFloat(result) / 1e18,
+          });
+        }
+      });
+    })
 
     this.state.EdTechCrowdsaleInstance.rate((err, result) => {
       if (result != null) {
@@ -93,13 +97,17 @@ class Crowdsale extends React.Component {
       alert('You must bet more than the minimum');
       cb();
     } else {
-      this.state.EdTechCrowdsaleInstance.buyTokens(web3.eth.accounts[0], {
-        gas: 300000,
-        from: web3.eth.accounts[0],
-        value: web3.toWei(bet, 'ether'),
-      }, (err, result) => {
-        cb();
-      });
+      web3.eth.getAccounts((error, accounts) => {
+        if (error) return console.error(error)
+
+        this.state.EdTechCrowdsaleInstance.buyTokens(accounts[0], {
+          gas: 300000,
+          from: web3.eth.accounts[0],
+          value: web3.toWei(bet, 'ether'),
+        }, (err, result) => {
+          cb();
+        });
+      })
     }
   }
 
