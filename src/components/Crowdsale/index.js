@@ -1,5 +1,7 @@
 import React from 'react';
 import Web3 from 'web3';
+import Moment from 'react-moment';
+import 'moment-timezone';
 import './_crowdsale.scss';
 
 class Crowdsale extends React.Component {
@@ -12,7 +14,9 @@ class Crowdsale extends React.Component {
       saleRate: 0,
       symbol: '',
       balance: 0,
-      raised: 0,
+      cap: 0,
+      openingTime: "",
+      closingTime: "",
     };
 
     if (typeof web3 !== 'undefined') {
@@ -23,13 +27,13 @@ class Crowdsale extends React.Component {
       this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
 
-    const EdTechCrowdsale = web3.eth.contract([{ constant: false, inputs: [{ name: '_beneficiary', type: 'address' }], name: 'buyTokens', outputs: [], payable: true, stateMutability: 'payable', type: 'function' }, { anonymous: false, inputs: [{ indexed: true, name: 'purchaser', type: 'address' }, { indexed: true, name: 'beneficiary', type: 'address' }, { indexed: false, name: 'value', type: 'uint256' }, { indexed: false, name: 'amount', type: 'uint256' }], name: 'TokenPurchase', type: 'event' }, { payable: true, stateMutability: 'payable', type: 'fallback' }, { inputs: [{ name: '_rate', type: 'uint256' }, { name: '_wallet', type: 'address' }, { name: '_token', type: 'address' }, { name: '_openingTime', type: 'uint256' }, { name: '_closingTime', type: 'uint256' }, { name: '_cap', type: 'uint256' }, { name: '_goal', type: 'uint256' }], payable: false, stateMutability: 'nonpayable', type: 'constructor' }, { constant: true, inputs: [], name: 'rate', outputs: [{ name: '', type: 'uint256' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: true, inputs: [], name: 'token', outputs: [{ name: '', type: 'address' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: true, inputs: [], name: 'wallet', outputs: [{ name: '', type: 'address' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: true, inputs: [], name: 'weiRaised', outputs: [{ name: '', type: 'uint256' }], payable: false, stateMutability: 'view', type: 'function' }]);
+    let crowdsaleContract = props.data.find(item=>item.name=="crowdsale")
+    const EdTechCrowdsale = web3.eth.contract(JSON.parse(crowdsaleContract.abi));
+    this.state.EdTechCrowdsaleInstance = EdTechCrowdsale.at(crowdsaleContract.address);
 
-    this.state.EdTechCrowdsaleInstance = EdTechCrowdsale.at('0xe487439c011b495838df81c1b166647a043e5a7d');
-
-    const EdTechToken = web3.eth.contract([{ constant: true, inputs: [], name: 'mintingFinished', outputs: [{ name: '', type: 'bool' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: true, inputs: [], name: 'name', outputs: [{ name: '', type: 'string' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: false, inputs: [{ name: '_spender', type: 'address' }, { name: '_value', type: 'uint256' }], name: 'approve', outputs: [{ name: '', type: 'bool' }], payable: false, stateMutability: 'nonpayable', type: 'function' }, { constant: true, inputs: [], name: 'totalSupply', outputs: [{ name: '', type: 'uint256' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: false, inputs: [{ name: '_from', type: 'address' }, { name: '_to', type: 'address' }, { name: '_value', type: 'uint256' }], name: 'transferFrom', outputs: [{ name: '', type: 'bool' }], payable: false, stateMutability: 'nonpayable', type: 'function' }, { constant: true, inputs: [], name: 'decimals', outputs: [{ name: '', type: 'uint8' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: false, inputs: [{ name: '_to', type: 'address' }, { name: '_amount', type: 'uint256' }], name: 'mint', outputs: [{ name: '', type: 'bool' }], payable: false, stateMutability: 'nonpayable', type: 'function' }, { constant: false, inputs: [{ name: '_spender', type: 'address' }, { name: '_subtractedValue', type: 'uint256' }], name: 'decreaseApproval', outputs: [{ name: '', type: 'bool' }], payable: false, stateMutability: 'nonpayable', type: 'function' }, { constant: true, inputs: [{ name: '_owner', type: 'address' }], name: 'balanceOf', outputs: [{ name: 'balance', type: 'uint256' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: false, inputs: [], name: 'finishMinting', outputs: [{ name: '', type: 'bool' }], payable: false, stateMutability: 'nonpayable', type: 'function' }, { constant: true, inputs: [], name: 'owner', outputs: [{ name: '', type: 'address' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: true, inputs: [], name: 'symbol', outputs: [{ name: '', type: 'string' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: false, inputs: [{ name: '_to', type: 'address' }, { name: '_value', type: 'uint256' }], name: 'transfer', outputs: [{ name: '', type: 'bool' }], payable: false, stateMutability: 'nonpayable', type: 'function' }, { constant: false, inputs: [{ name: '_spender', type: 'address' }, { name: '_addedValue', type: 'uint256' }], name: 'increaseApproval', outputs: [{ name: '', type: 'bool' }], payable: false, stateMutability: 'nonpayable', type: 'function' }, { constant: true, inputs: [{ name: '_owner', type: 'address' }, { name: '_spender', type: 'address' }], name: 'allowance', outputs: [{ name: '', type: 'uint256' }], payable: false, stateMutability: 'view', type: 'function' }, { constant: false, inputs: [{ name: 'newOwner', type: 'address' }], name: 'transferOwnership', outputs: [], payable: false, stateMutability: 'nonpayable', type: 'function' }, { anonymous: false, inputs: [{ indexed: true, name: 'to', type: 'address' }, { indexed: false, name: 'amount', type: 'uint256' }], name: 'Mint', type: 'event' }, { anonymous: false, inputs: [], name: 'MintFinished', type: 'event' }, { anonymous: false, inputs: [{ indexed: true, name: 'previousOwner', type: 'address' }, { indexed: true, name: 'newOwner', type: 'address' }], name: 'OwnershipTransferred', type: 'event' }, { anonymous: false, inputs: [{ indexed: true, name: 'owner', type: 'address' }, { indexed: true, name: 'spender', type: 'address' }, { indexed: false, name: 'value', type: 'uint256' }], name: 'Approval', type: 'event' }, { anonymous: false, inputs: [{ indexed: true, name: 'from', type: 'address' }, { indexed: true, name: 'to', type: 'address' }, { indexed: false, name: 'value', type: 'uint256' }], name: 'Transfer', type: 'event' }]);
-
-    this.state.EdTechTokenInstance = EdTechToken.at('0x58b36e7a41278cffe43471b2d606b143671f2f5d');
+    let tokenContract = props.data.find(item=>item.name=="token")
+    const EdTechToken = web3.eth.contract(JSON.parse(tokenContract.abi));
+    this.state.EdTechTokenInstance = EdTechToken.at(tokenContract.address);
   }
 
   componentDidMount() {
@@ -71,6 +75,43 @@ class Crowdsale extends React.Component {
         console.warn(result);
         this.setState({
           saleRate: parseInt(result),
+        });
+      }
+    });
+
+    this.state.EdTechCrowdsaleInstance.openingTime((err, result) => {
+      if (result != null) {
+        console.warn(result);
+
+        let time = parseInt(result);
+        if (!time || time <= 0) return console.error("No opening time set for crowdsale.");
+        time = time;
+
+        this.setState({
+          openingTime:<Moment unix tz="UTC" format="YYYY/MM/DD HH:mm:ss z">{time}</Moment>,
+        });
+      }
+    });
+
+    this.state.EdTechCrowdsaleInstance.closingTime((err, result) => {
+      if (result != null) {
+        console.warn(result);
+
+        let time = parseInt(result)
+        if (!time || time <= 0) return console.error("No closing time set for crowdsale.");
+        time = time;
+
+        this.setState({
+          closingTime: <Moment unix tz="UTC" format="YYYY/MM/DD HH:mm:ss z">{time}</Moment>,
+        });
+      }
+    });
+
+    this.state.EdTechCrowdsaleInstance.cap((err, result) => {
+      if (result != null) {
+        console.warn(result);
+        this.setState({
+          cap: parseFloat(result) / 1e18,
         });
       }
     });
@@ -123,6 +164,23 @@ class Crowdsale extends React.Component {
         <div className="container">
           <h1 className="crowdsale-title">EDTEC Crowdsale</h1>
           <div className="block">
+            <b>Start Time: </b> &nbsp;
+            <span>{this.state.openingTime}</span>
+          </div>
+          <div className="block">
+            <b>End Time: </b> &nbsp;
+            <span>{this.state.closingTime}</span>
+          </div>
+          <div className="block">
+            <b>Maximum Cap: </b> &nbsp;
+            <span>{this.state.cap} ETH</span>
+          </div>
+          <div className="block">
+            <b>Total ETH raised:</b> &nbsp;
+            <span>{this.state.raised}</span>
+          </div>
+          <hr />
+          <div className="block">
             <b>Token Symbol:</b> &nbsp;
             <span>{this.state.symbol}</span>
           </div>
@@ -131,17 +189,12 @@ class Crowdsale extends React.Component {
             <span>{this.state.EdTechTokenInstance.address}</span>
           </div>
           <div className="block">
-            <b>You own:</b> &nbsp;
-            <span>{this.state.balance} EDTEC Tokens</span>
-          </div>
-          <hr />
-          <div className="block">
-            <b>Total ETH raised:</b> &nbsp;
-            <span>{this.state.raised}</span>
-          </div>
-          <div className="block">
             <b>Rate:</b> &nbsp;
             <span>1 ETH = {this.state.saleRate} EDTEC</span>
+          </div>
+          <div className="block">
+            <b>You own:</b> &nbsp;
+            <span>{this.state.balance} EDTEC Tokens</span>
           </div>
           <hr />
           <h2>Purchase EDTEC Tokens</h2>

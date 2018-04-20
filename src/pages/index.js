@@ -8,7 +8,7 @@ import Team from '../components/Team';
 import CrowdSale from '../components/Crowdsale';
 import Partnerships from '../components/Partnerships';
 import Roadmap from '../components/Roadmap';
-import ProgressBar from '../components/CrowdsaleProgressBar/index';
+import ProgressBar from '../components/CrowdsaleProgressBar';
 
 
 const IndexPage = props =>
@@ -16,7 +16,7 @@ const IndexPage = props =>
     <Features data={props.data.allDataJson.edges[0].node.features} />
     <Team data={props.data.allDataJson.edges[0].node.team} />
     <Distribution data={props.data.allDataJson.edges[0].node.howTo} />
-    <CrowdSale data={props.data.allDataJson.edges[0].node.features} />
+    <CrowdSale data= {props.data.allDataJson.edges[0].node.contracts} />
     <ProgressBar data={props.data.allDataJson.edges[0].node.contracts} />
     <Partnerships data={props.data.allDataJson.edges[0].node.partnerships} />
     <Roadmap />
@@ -50,6 +50,7 @@ export const pageQuery = graphql`
           contracts {
             name
             address
+            abi
           }
         }
       }

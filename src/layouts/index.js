@@ -9,7 +9,7 @@ import '../../sass/style.scss';
 const TemplateWrapper = ({ children }) => (
   <div>
     <Helmet
-      title="Gatsby React Boiler"
+      title="EDTECH ICO"
     />
     <Header />
     {children()}
