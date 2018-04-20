@@ -85,8 +85,7 @@ class Crowdsale extends React.Component {
 
         let time = parseInt(result);
         if (!time || time <= 0) return console.error("No opening time set for crowdsale.");
-        time = time;
-
+      
         this.setState({
           openingTime:<Moment unix tz="UTC" format="YYYY/MM/DD HH:mm:ss z">{time}</Moment>,
         });
@@ -99,7 +98,6 @@ class Crowdsale extends React.Component {
 
         let time = parseInt(result)
         if (!time || time <= 0) return console.error("No closing time set for crowdsale.");
-        time = time;
 
         this.setState({
           closingTime: <Moment unix tz="UTC" format="YYYY/MM/DD HH:mm:ss z">{time}</Moment>,
