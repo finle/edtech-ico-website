@@ -17,6 +17,7 @@ class Crowdsale extends React.Component {
       cap: 0,
       openingTime: "",
       closingTime: "",
+      hasError: false,
     };
 
     if (typeof web3 !== 'undefined') {
@@ -25,6 +26,11 @@ class Crowdsale extends React.Component {
     } else {
       console.log("No web3 detected. Falling back to http://localhost:8545. You should remove this fallback when you deploy live, as it's inherently insecure. Consider switching to Metamask for development. More info here: http://truffleframework.com/tutorials/truffle-and-metamask");
       this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+    }
+
+    if (typeof web3 === 'undefined') {
+      this.state.hasError = true;
+      return;
     }
 
     let crowdsaleContract = props.data.find(item=>item.name=="crowdsale")
@@ -36,7 +42,17 @@ class Crowdsale extends React.Component {
     this.state.EdTechTokenInstance = EdTechToken.at(tokenContract.address);
   }
 
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, info);
+  }
+
   componentDidMount() {
+    if (this.state.hasError)
+      return;
+      
     this.updateState();
     this.setupListeners();
     setInterval(this.updateState.bind(this), 10e3);
@@ -85,7 +101,7 @@ class Crowdsale extends React.Component {
 
         let time = parseInt(result);
         if (!time || time <= 0) return console.error("No opening time set for crowdsale.");
-      
+
         this.setState({
           openingTime:<Moment unix tz="UTC" format="YYYY/MM/DD HH:mm:ss z">{time}</Moment>,
         });
@@ -157,6 +173,10 @@ class Crowdsale extends React.Component {
   }
 
   render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return (<h1>Something went wrong. Install Metamask plugin, connect account and refresh this page.</h1>);
+    }
     return (
       <section className="crowdsale" id="crowdsale">
         <div className="container">

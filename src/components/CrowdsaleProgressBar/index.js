@@ -19,6 +19,11 @@ class CrowdsaleProgressBar extends React.Component {
       this.web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
     }
 
+    if (typeof web3 === 'undefined') {
+      this.state.hasError = true;
+      return;
+    }
+
     let crowdsaleContract = props.data.find(item=>item.name=="crowdsale")
     const EdTechCrowdsale = web3.eth.contract(JSON.parse(crowdsaleContract.abi));
     this.state.EdTechCrowdsaleInstance = EdTechCrowdsale.at(crowdsaleContract.address);
@@ -28,7 +33,17 @@ class CrowdsaleProgressBar extends React.Component {
     this.state.EdTechTokenInstance = EdTechToken.at(tokenContract.address);
   }
 
+  componentDidCatch(error, info) {
+    // Display fallback UI
+    this.setState({ hasError: true });
+    // You can also log the error to an error reporting service
+    logErrorToMyService(error, info);
+  }
+
   componentDidMount() {
+    if (this.state.hasError)
+      return;
+      
     this.updateState();
     setInterval(this.updateState.bind(this), 10e3);
   }
@@ -54,6 +69,10 @@ class CrowdsaleProgressBar extends React.Component {
   }
 
   render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return (<h1>Something went wrong. Install Metamask plugin, connect account and refresh this page.</h1>);
+    }
     return (
       <section className="progressbar" id="progressbar">
         <div className="container">
