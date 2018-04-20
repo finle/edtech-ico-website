@@ -7,6 +7,8 @@ import "./Crowdsale.sol";
 /**
  * @title CappedCrowdsale
  * @dev Crowdsale with a limit for total contributions.
+ *
+ * Reference: https://github.com/OpenZeppelin/zeppelin-solidity
  */
 contract CappedCrowdsale is Crowdsale {
   using SafeMath for uint256;

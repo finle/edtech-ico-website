@@ -7,6 +7,8 @@ import "./Crowdsale.sol";
 /**
  * @title TimedCrowdsale
  * @dev Crowdsale accepting contributions only within a time frame.
+ *
+ * Reference: https://github.com/OpenZeppelin/zeppelin-solidity
  */
 contract TimedCrowdsale is Crowdsale {
   using SafeMath for uint256;

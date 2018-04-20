@@ -8,6 +8,8 @@ import "./MintableToken.sol";
  * @title MintedCrowdsale
  * @dev Extension of Crowdsale contract whose tokens are minted in each purchase.
  * Token ownership should be transferred to MintedCrowdsale for minting.
+ *
+ * Reference: https://github.com/OpenZeppelin/zeppelin-solidity
  */
 contract MintedCrowdsale is Crowdsale {
 
